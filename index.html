@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101b35">
+<title>PocketBank — Toy Money</title>
+<style>
+:root{--navy:#101b35;--navy2:#19294b;--blue:#5578f5;--mint:#baf4dc;--paper:#f4f6fb;--ink:#18233b;--muted:#6b7690;--line:#e2e7f0;--white:#fff;--red:#c74354;--green:#137a56}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:13px;padding:12px 15px;font-weight:700;transition:transform .08s}button:active{transform:scale(.98)}
+.app{max-width:980px;margin:auto;min-height:100vh}.top{background:linear-gradient(130deg,var(--navy),var(--navy2));color:white;padding:24px 20px 26px;border-radius:0 0 26px 26px}.toprow{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;gap:10px;align-items:center;font-weight:850;font-size:19px;letter-spacing:.2px}.logo{width:40px;height:40px;border-radius:14px;background:var(--mint);color:var(--navy);display:grid;place-items:center;font-size:21px}.chip{font-size:11px;color:#d5def7;border:1px solid #526184;padding:6px 9px;border-radius:99px;white-space:nowrap}.welcome{margin:25px 0 7px;color:#c8d3f1;font-size:13px}.balance{font-size:clamp(34px,8vw,48px);font-weight:850;letter-spacing:-1.5px;line-height:1.1}.balance small{font-size:15px;letter-spacing:0;color:#c8d3f1;font-weight:600}.subline{color:#c8d3f1;font-size:13px;margin-top:8px}.main{padding:18px 16px 40px}.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:-1px}.action{background:white;border:1px solid var(--line);padding:14px 5px;border-radius:16px;text-align:center;box-shadow:0 4px 15px #15234808}.action .ico{font-size:22px;display:block;margin-bottom:5px}.action span:last-child{font-size:12px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:25px 0 12px}.sectionhead h2{font-size:17px;margin:0}.small{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:13px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:17px;min-width:0}.card h3{margin:0 0 4px;font-size:15px}.muted{color:var(--muted);font-size:13px}.scanbox{background:#f1f5ff;border:1px dashed #9eafea;border-radius:15px;padding:16px;margin-top:14px;text-align:center}.scanicon{font-size:32px}.primary{background:var(--blue);color:white}.dark{background:var(--navy);color:white}.soft{background:#edf1ff;color:#3152c5}.plain{background:#f0f2f7;color:#33405a}.danger{background:#fff0f1;color:var(--red)}.full{width:100%}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-size:12px;font-weight:750;color:#536079}.field input,.field select{width:100%;border:1px solid #dce2ed;border-radius:11px;padding:12px;background:white;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #5578f51a}.row{display:flex;gap:9px;align-items:center}.row>*{min-width:0;flex:1}.notice{padding:11px 12px;border-radius:12px;font-size:13px;margin:12px 0;display:none}.notice.show{display:block}.notice.info{background:#edf3ff;color:#2449a8}.notice.good{background:#e8f8f0;color:#146947}.notice.bad{background:#fff0f1;color:#a32c3b}.players{display:grid;gap:9px}.player{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #edf0f5}.player:last-child{border:0}.avatar{width:39px;height:39px;border-radius:13px;background:#e8edff;color:#3b58bd;display:grid;place-items:center;font-weight:850}.playerinfo{flex:1;min-width:0}.playerinfo strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.money{font-weight:800;white-space:nowrap}.tx{display:flex;gap:11px;align-items:center;padding:12px 0;border-bottom:1px solid #edf0f5}.tx:last-child{border:0}.txicon{width:35px;height:35px;border-radius:12px;background:#f0f3fa;display:grid;place-items:center}.txinfo{flex:1;min-width:0}.txinfo strong{display:block;font-size:13px}.txinfo small{color:var(--muted);font-size:11px}.positive{color:var(--green)}.negative{color:var(--red)}.empty{text-align:center;padding:20px 8px;color:var(--muted);font-size:13px}.footer{color:#7c869b;font-size:11px;text-align:center;padding:20px 8px}.hidden{display:none!important}.tabs{display:flex;gap:7px;overflow:auto;margin:16px 0 0}.tab{padding:9px 12px;border-radius:10px;background:#263657;color:#d9e2ff;font-size:12px;white-space:nowrap}.tab.active{background:var(--mint);color:var(--navy)}.modalback{position:fixed;inset:0;background:#08112699;display:flex;align-items:flex-end;justify-content:center;padding:12px;z-index:10}.modal{width:min(100%,520px);background:white;border-radius:23px;padding:21px;max-height:90vh;overflow:auto}.modalhead{display:flex;align-items:center;justify-content:space-between}.modalhead h2{font-size:20px;margin:0}.close{background:#f0f2f7;padding:8px 12px}.formbuttons{display:flex;gap:8px;margin-top:16px}.formbuttons button{flex:1}.tiny{font-size:11px;color:var(--muted);line-height:1.5}.pill{display:inline-block;background:#eef2ff;color:#4059bd;border-radius:99px;padding:4px 8px;font-size:10px;font-weight:800}.settingrow{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:13px 0;border-bottom:1px solid #edf0f5}.settingrow:last-child{border:0}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.actions{grid-template-columns:repeat(4,1fr)}.main{padding:15px 12px 30px}.top{padding:20px 17px 25px}.card{padding:15px}.chip{font-size:10px}.actions button{padding:11px 2px}.action span:last-child{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="toprow"><div class="brand"><div class="logo">₵</div><span>PocketBank</span></div><span class="chip">TOY MONEY · OFFLINE</span></div>
+  <div class="welcome" id="greeting">YOUR LITTLE WORLD BANK</div>
+  <div class="balance" id="totalBalance">$0.00 <small>toy dollars</small></div>
+  <div class="subline"><span id="playerCount">0 players</span> · <span id="txCount">0 transactions</span></div>
+  <div class="tabs">
+    <button class="tab active" data-page="home">Overview</button><button class="tab" data-page="accounts">Accounts</button><button class="tab" data-page="cashier">Cashier</button><button class="tab" data-page="history">History</button><button class="tab" data-page="settings">Settings & backup</button>
+  </div>
+</header>
+<main class="main">
+  <section id="page-home">
+    <div class="actions">
+      <button class="action" data-action="scan"><span class="ico">📳</span><span>Tap card</span></button>
+      <button class="action" data-action="deposit"><span class="ico">＋</span><span>Deposit</span></button>
+      <button class="action" data-action="transfer"><span class="ico">⇄</span><span>Transfer</span></button>
+      <button class="action" data-action="new"><span class="ico">♙</span><span>New player</span></button>
+    </div>
+    <div id="notice" class="notice"></div>
+    <div class="sectionhead"><h2>Bank tools</h2><span class="small">One-device mode</span></div>
+    <div class="grid">
+      <div class="card">
+        <h3>Tap an NFC card</h3><div class="muted">Read a card to open the linked player account.</div>
+        <div class="scanbox"><div class="scanicon">📲</div><strong id="scanTitle">Ready to scan</strong><p class="muted" id="scanHelp">Use a supported NDEF card with a text record containing its card code.</p><button class="primary full" id="scanBtn">Start NFC scan</button><button class="plain full" style="margin-top:8px" id="manualBtn">Enter card code manually</button></div>
+        <p class="tiny">NFC reading works only in supported Android browsers over HTTPS. Many cards expose no readable text record; if yours does not, use manual card codes or compatible NDEF tags.</p>
+      </div>
+      <div class="card">
+        <h3>Recent activity</h3><div class="muted">Latest money movements</div><div id="recentTx" style="margin-top:9px"></div>
+      </div>
+    </div>
+    <div class="sectionhead"><h2>Player accounts</h2><button class="soft" data-action="new">＋ Add</button></div>
+    <div class="card"><div id="homePlayers" class="players"></div></div>
+  </section>
+  <section id="page-accounts" class="hidden">
+    <div class="sectionhead"><h2>Player accounts</h2><button class="primary" data-action="new">＋ New player</button></div>
+    <div class="card"><div id="allPlayers" class="players"></div></div>
+  </section>
+  <section id="page-cashier" class="hidden">
+    <div class="sectionhead"><h2>Cashier checkout</h2><span class="pill">PAYMENT MODE</span></div>
+    <div class="card"><h3>Charge a customer</h3><p class="muted">Select a player, enter the purchase amount and confirm.</p>
+      <div class="field"><label>Customer</label><select id="cashPlayer"></select></div>
+      <div class="field"><label>Item / reason</label><input id="cashReason" placeholder="e.g. Shop purchase"></div>
+      <div class="field"><label>Amount (toy dollars)</label><input id="cashAmount" type="number" min="0.01" step="0.01" placeholder="0.00" inputmode="decimal"></div>
+      <button class="primary full" id="chargeBtn">Review payment</button><div id="cashMsg" class="notice"></div>
+    </div>
+    <div class="card" style="margin-top:12px"><h3>Quick guide</h3><p class="muted">For a physical shop, scan the customer's card first on Overview, then select the same customer here. Payments cannot make a balance negative.</p></div>
+  </section>
+  <section id="page-history" class="hidden">
+    <div class="sectionhead"><h2>Transaction history</h2><button class="soft" id="exportCsvBtn">Export CSV</button></div>
+    <div class="card"><div id="allTx"></div></div>
+  </section>
+  <section id="page-settings" class="hidden">
+    <div class="sectionhead"><h2>Settings & backup</h2></div>
+    <div class="card">
+      <h3>Bank settings</h3>
+      <div class="field"><label>Bank name</label><input id="bankName" maxlength="40" placeholder="PocketBank"></div>
+      <div class="field"><label>Currency label</label><input id="currencyLabel" maxlength="24" placeholder="toy dollars"></div>
+      <button class="primary full" id="saveSettings">Save settings</button>
+      <div class="settingrow"><div><strong>Export backup</strong><div class="muted">Save players, card links and transactions.</div></div><button class="soft" id="exportBtn">Export JSON</button></div>
+      <div class="settingrow"><div><strong>Restore backup</strong><div class="muted">Import a previously exported JSON file.</div></div><button class="soft" id="importBtn">Choose file</button><input type="file" id="importFile" accept=".json,application/json" class="hidden"></div>
+      <div class="settingrow"><div><strong>Delete all toy-bank data</strong><div class="muted">Cannot be undone unless you have a backup.</div></div><button class="danger" id="resetBtn">Reset</button></div>
+    </div>
+    <div class="card" style="margin-top:12px"><h3>Important limitations</h3><p class="muted">This prototype stores its data in this browser on this device. It is not a real bank, has no cloud sync and is not protected against someone who can access this device or browser storage. Export backups regularly. NFC card identifiers are not secure authentication; use only for pretend money.</p></div>
+  </section>
+  <div class="footer">PocketBank · Pretend money only · Keep a backup of your data</div>
+</main>
+</div>
+<div id="modalBack" class="modalback hidden"><div class="modal" role="dialog" aria-modal="true"><div class="modalhead"><h2 id="modalTitle">New player</h2><button class="close" id="closeModal">✕</button></div><div id="modalBody"></div></div></div>
+<script>
+(()=> {
+const KEY='pocketbank_v1';
+const $=id=>document.getElementById(id);
+let state={players:[],transactions:[],settings:{bankName:'PocketBank',currencyLabel:'toy dollars'}};
+let currentPlayer=null, scanAbort=null;
+const money=n=>'$'+Number(n||0).toLocaleString('en-NZ',{minimumFractionDigits:2,maximumFractionDigits:2});
+const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,8).toUpperCase()+Date.now().toString(36).slice(-4).toUpperCase();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){showNotice('Could not save. Export a backup and check device storage.','bad');}}
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY)||'null');if(x&&Array.isArray(x.players)&&Array.isArray(x.transactions)){state={...state,...x,settings:{...state.settings,...x.settings}};}}catch(e){}}
+function showNotice(msg,type='info',target='notice'){const el=$(target);if(!el)return;el.textContent=msg;el.className='notice show '+type;if(target==='notice')setTimeout(()=>{if(el.textContent===msg)el.className='notice';},6000);}
+function player(id){return state.players.find(p=>p.id===id);}
+function fmtDate(d){try{return new Date(d).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});}catch(e){return d;}}
+function addTx(type,amount,from,to,reason){state.transactions.unshift({id:uid(),type,amount:Number(amount),from:from||'',to:to||'',reason:reason||'',date:new Date().toISOString()});if(state.transactions.length>1000)state.transactions.length=1000;}
+function total(){return state.players.reduce((s,p)=>s+p.balance,0);}
+function txMarkup(t){let title='',icon='↔',cls='',amt='';const a=player(t.from),b=player(t.to);
+if(t.type==='deposit'){title='Deposit · '+(b?.name||'Account');icon='＋';cls='positive';amt='+'+money(t.amount);}
+else if(t.type==='withdraw'){title='Withdrawal · '+(a?.name||'Account');icon='−';cls='negative';amt='−'+money(t.amount);}
+else if(t.type==='payment'){title=(t.reason||'Purchase')+' · '+(a?.name||'Account');icon='🛍';cls='negative';amt='−'+money(t.amount);}
+else if(t.type==='transfer'){title=(a?.name||'Account')+' → '+(b?.name||'Account');icon='⇄';cls='';amt=money(t.amount);}
+else {title=t.reason||'Transaction';amt=money(t.amount);}
+return `<div class="tx"><div class="txicon">${icon}</div><div class="txinfo"><strong>${escapeHtml(title)}</strong><small>${escapeHtml(fmtDate(t.date))}</small></div><strong class="${cls}">${amt}</strong></div>`;}
+function playerMarkup(p){return `<div class="player"><div class="avatar">${escapeHtml(p.name.trim().slice(0,1).toUpperCase()||'?')}</div><div class="playerinfo"><strong>${escapeHtml(p.name)}</strong><span class="small">${p.cardCode?'Card · '+escapeHtml(p.cardCode):'No card linked'}</span></div><div class="money">${money(p.balance)}</div><button class="soft" data-open="${p.id}" aria-label="Open ${escapeHtml(p.name)}">Open</button></div>`;}
+function render(){ $('totalBalance').innerHTML=money(total())+' <small>'+escapeHtml(state.settings.currencyLabel)+'</small>';$('playerCount').textContent=state.players.length+' player'+(state.players.length===1?'':'s');$('txCount').textContent=state.transactions.length+' transaction'+(state.transactions.length===1?'':'s');$('greeting').textContent=state.settings.bankName.toUpperCase();
+$('homePlayers').innerHTML=state.players.length?state.players.map(playerMarkup).join(''):'<div class="empty">No accounts yet. Add a player to start your toy bank.</div>';
+$('allPlayers').innerHTML=$('homePlayers').innerHTML;
+$('recentTx').innerHTML=state.transactions.length?state.transactions.slice(0,5).map(txMarkup).join(''):'<div class="empty">Your first transaction will appear here.</div>';
+$('allTx').innerHTML=state.transactions.length?state.transactions.map(txMarkup).join(''):'<div class="empty">No transactions yet.</div>';
+const opts=state.players.map(p=>`<option value="${p.id}">${escapeHtml(p.name)} — ${money(p.balance)}</option>`).join('');
+$('cashPlayer').innerHTML=opts||'<option value="">Create a player first</option>';
+$('bankName').value=state.settings.bankName;$('currencyLabel').value=state.settings.currencyLabel;
+}
+function showPage(page){document.querySelectorAll('[id^="page-"]').forEach(e=>e.classList.add('hidden'));$('page-'+page).classList.remove('hidden');document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
+function openModal(title,body){$('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modalBack').classList.remove('hidden');}
+function closeModal(){$('modalBack').classList.add('hidden');}
+function newPlayer(prefill=''){openModal('Create player',`<form id="newPlayerForm"><div class="field"><label>PLAYER NAME</label><input id="newName" maxlength="50" required placeholder="e.g. Alex" autocomplete="off"></div><div class="field"><label>STARTING BALANCE</label><input id="newBalance" type="number" min="0" step="0.01" value="0" required inputmode="decimal"></div><div class="field"><label>NFC CARD CODE (optional)</label><input id="newCode" maxlength="180" value="${escapeHtml(prefill)}" placeholder="Tap card or enter a code"></div><div class="tiny">A card code must be unique. For an NDEF card, use a text record containing this code. The browser cannot read every card type.</div><div class="formbuttons"><button type="button" class="plain" id="cancelNew">Cancel</button><button class="primary" type="submit">Create account</button></div></form>`);
+$('cancelNew').onclick=closeModal;$('newPlayerForm').onsubmit=e=>{e.preventDefault();const name=$('newName').value.trim(),balance=Number($('newBalance').value),code=$('newCode').value.trim();if(!name||!Number.isFinite(balance)||balance<0)return;if(code&&state.players.some(p=>p.cardCode.toLowerCase()===code.toLowerCase()))return alert('That card code is already linked to an account.');const p={id:uid(),name,balance:Math.round(balance*100)/100,cardCode:code};state.players.push(p);if(balance)addTx('deposit',balance,'',p.id,'Opening balance');save();render();closeModal();showNotice('Account created for '+name+'.','good');};
+}
+function accountModal(p){openModal(p.name,`<div style="background:#f1f5ff;border-radius:15px;padding:17px;margin:16px 0"><div class="muted">AVAILABLE BALANCE</div><div style="font-size:34px;font-weight:850">${money(p.balance)}</div><div class="small">${p.cardCode?'Card: '+escapeHtml(p.cardCode):'No NFC card linked'}</div></div><div class="row"><button class="primary" id="pDeposit">＋ Deposit</button><button class="soft" id="pWithdraw">− Withdraw</button></div><div class="row" style="margin-top:8px"><button class="soft" id="pLink">Link / change card</button><button class="plain" id="pRename">Edit name</button></div><button class="danger full" style="margin-top:8px" id="pDelete">Delete account</button>`);
+$('pDeposit').onclick=()=>amountModal(p,'deposit');$('pWithdraw').onclick=()=>amountModal(p,'withdraw');$('pLink').onclick=()=>linkCard(p);$('pRename').onclick=()=>renamePlayer(p);$('pDelete').onclick=()=>{if(confirm('Delete '+p.name+'? Historical transactions remain, but the account cannot be restored without a backup.')){state.players=state.players.filter(x=>x.id!==p.id);save();render();closeModal();}};
+}
+function amountModal(p,type){const isDep=type==='deposit';openModal((isDep?'Deposit to ':'Withdraw from ')+p.name,`<form id="amountForm"><div class="field"><label>AMOUNT</label><input id="amountValue" type="number" min="0.01" step="0.01" required inputmode="decimal" placeholder="0.00"></div><div class="field"><label>REASON (optional)</label><input id="amountReason" maxlength="100" placeholder="${isDep?'Allowance, wages…':'Cash out…'}"></div><div class="formbuttons"><button type="button" class="plain" id="cancelAmount">Cancel</button><button class="primary" type="submit">Confirm ${isDep?'deposit':'withdrawal'}</button></div></form>`);$('cancelAmount').onclick=()=>accountModal(p);$('amountForm').onsubmit=e=>{e.preventDefault();const n=Math.round(Number($('amountValue').value)*100)/100;if(!Number.isFinite(n)||n<=0)return;if(!isDep&&n>p.balance)return alert('Not enough toy money in this account.');p.balance=Math.round((p.balance+(isDep?n:-n))*100)/100;addTx(isDep?'deposit':'withdraw',n,isDep?'':p.id,isDep?p.id:'',$('amountReason').value.trim());save();render();closeModal();showNotice((isDep?'Deposited ':'Withdrew ')+money(n)+'.','good');};}
+function linkCard(p){openModal('Link NFC card',`<p class="muted">Tap a supported NDEF card, or type the card code stored in its text record.</p><div class="field"><label>CARD CODE</label><input id="linkCode" value="${escapeHtml(p.cardCode||'')}" maxlength="180" placeholder="Card code"></div><button class="primary full" id="linkScan">Scan NFC card</button><div class="formbuttons"><button class="plain" id="unlinkCard">Unlink card</button><button class="primary" id="saveLink">Save card link</button></div>`);$('linkScan').onclick=async()=>{const code=await readNfc();if(code)$('linkCode').value=code;};$('unlinkCard').onclick=()=>{$('linkCode').value='';};$('saveLink').onclick=()=>{const code=$('linkCode').value.trim();if(code&&state.players.some(x=>x.id!==p.id&&x.cardCode.toLowerCase()===code.toLowerCase()))return alert('This card is already linked to another player.');p.cardCode=code;save();render();closeModal();showNotice(code?'Card linked to '+p.name+'.':'Card unlinked.','good');};}
+function renamePlayer(p){openModal('Edit player',`<form id="renameForm"><div class="field"><label>PLAYER NAME</label><input id="renameName" maxlength="50" required value="${escapeHtml(p.name)}"></div><div class="formbuttons"><button type="button" class="plain" id="cancelRename">Cancel</button><button class="primary">Save name</button></div></form>`);$('cancelRename').onclick=()=>accountModal(p);$('renameForm').onsubmit=e=>{e.preventDefault();p.name=$('renameName').value.trim();save();render();closeModal();};}
+async function readNfc(){if(!('NDEFReader'in window)){showNotice('Web NFC is not available here. Try Chrome on an NFC-capable Android device, or enter the card code manually.','bad');return null;}try{const reader=new NDEFReader();await reader.scan();showNotice('Ready — hold your NFC card against the phone.','info');return await new Promise(resolve=>{let done=false;const finish=v=>{if(done)return;done=true;resolve(v);};reader.onreading=event=>{let found='';try{for(const record of event.message.records){if(record.recordType==='text'){const dec=new TextDecoder(record.encoding||'utf-8');found=dec.decode(record.data).trim();if(found)break;}else if(record.recordType==='url'){found=new TextDecoder().decode(record.data).trim();if(found)break;}}}catch(e){}if(found){finish(found);showNotice('NFC record read.','good');}else{showNotice('Card detected, but no text or URL record was found. This card may not work with Web NFC.','bad');finish(null);}};reader.onreadingerror=()=>{showNotice('Could not read this tag. Try again or enter the code manually.','bad');finish(null);};setTimeout(()=>finish(null),25000);});}catch(e){showNotice('NFC scan could not start: '+(e.message||'check browser permissions and HTTPS.'),'bad');return null;}}
+async function scanCard(){const code=await readNfc();if(!code)return;const p=state.players.find(x=>x.cardCode.toLowerCase()===code.toLowerCase());if(p){currentPlayer=p.id;showPage('accounts');accountModal(p);showNotice('Card matched '+p.name+'.','good');}else{openModal('Unregistered card',`<p>This card code is not linked to an account.</p><div class="field"><label>READ CARD CODE</label><input id="unknownCode" readonly value="${escapeHtml(code)}"></div><button class="primary full" id="registerUnknown">Create account for this card</button><button class="plain full" style="margin-top:8px" id="closeUnknown">Cancel</button>`);$('registerUnknown').onclick=()=>{closeModal();newPlayer(code);};$('closeUnknown').onclick=closeModal;}}
+function manualCard(){openModal('Find account by card code',`<div class="field"><label>CARD CODE</label><input id="manualCode" placeholder="Enter the code linked to the card"></div><div class="formbuttons"><button class="plain" id="manualCancel">Cancel</button><button class="primary" id="manualFind">Find account</button></div>`);$('manualCancel').onclick=closeModal;$('manualFind').onclick=()=>{const code=$('manualCode').value.trim(),p=state.players.find(x=>x.cardCode.toLowerCase()===code.toLowerCase());if(!p)return alert('No account found for that card code.');closeModal();accountModal(p);};}
+function transferModal(){if(state.players.length<2)return alert('Create at least two players before transferring money.');openModal('Transfer toy money',`<form id="transferForm"><div class="field"><label>FROM ACCOUNT</label><select id="transferFrom">${state.players.map(p=>`<option value="${p.id}">${escapeHtml(p.name)} — ${money(p.balance)}</option>`).join('')}</select></div><div class="field"><label>TO ACCOUNT</label><select id="transferTo">${state.players.map(p=>`<option value="${p.id}">${escapeHtml(p.name)}</option>`).join('')}</select></div><div class="field"><label>AMOUNT</label><input id="transferAmount" type="number" min="0.01" step="0.01" required placeholder="0.00" inputmode="decimal"></div><div class="field"><label>REASON (optional)</label><input id="transferReason" maxlength="100" placeholder="e.g. Paid for a toy"></div><div class="formbuttons"><button type="button" class="plain" id="cancelTransfer">Cancel</button><button class="primary">Review transfer</button></div></form>`);$('cancelTransfer').onclick=closeModal;$('transferForm').onsubmit=e=>{e.preventDefault();const from=player($('transferFrom').value),to=player($('transferTo').value),n=Math.round(Number($('transferAmount').value)*100)/100,reason=$('transferReason').value.trim();if(!from||!to||from.id===to.id)return alert('Choose two different accounts.');if(!Number.isFinite(n)||n<=0)return;if(n>from.balance)return alert('Not enough toy money.');if(!confirm(`Transfer ${money(n)} from ${from.name} to ${to.name}?`))return;from.balance=Math.round((from.balance-n)*100)/100;to.balance=Math.round((to.balance+n)*100)/100;addTx('transfer',n,from.id,to.id,reason||'Transfer');save();render();closeModal();showNotice('Transfer complete.','good');};}
+function manualDeposit(){if(!state.players.length)return newPlayer();openModal('Choose deposit account',`<div class="field"><label>PLAYER</label><select id="depositPlayer">${state.players.map(p=>`<option value="${p.id}">${escapeHtml(p.name)} — ${money(p.balance)}</option>`).join('')}</select></div><button class="primary full" id="goDeposit">Continue</button>`);$('goDeposit').onclick=()=>{const p=player($('depositPlayer').value);if(p)amountModal(p,'deposit');};}
+function cashier(){showPage('cashier');}
+$('scanBtn').onclick=scanCard;$('manualBtn').onclick=manualCard;$('closeModal').onclick=closeModal;$('modalBack').addEventListener('click',e=>{if(e.target===$('modalBack'))closeModal();});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)showPage(b.dataset.page);const a=e.target.closest('[data-action]');if(a){const act=a.dataset.action;if(act==='new')newPlayer();if(act==='scan')scanCard();if(act==='deposit')manualDeposit();if(act==='transfer')transferModal();}const op=e.target.closest('[data-open]');if(op){const p=player(op.dataset.open);if(p)accountModal(p);}});
+$('chargeBtn').onclick=()=>{const p=player($('cashPlayer').value),n=Math.round(Number($('cashAmount').value)*100)/100,reason=$('cashReason').value.trim()||'Shop purchase';if(!p)return showNotice('Create a player first.','bad','cashMsg');if(!Number.isFinite(n)||n<=0)return showNotice('Enter an amount greater than zero.','bad','cashMsg');if(n>p.balance)return showNotice('Insufficient balance. The payment was not taken.','bad','cashMsg');if(!confirm(`Charge ${p.name} ${money(n)} for "${reason}"?`))return;p.balance=Math.round((p.balance-n)*100)/100;addTx('payment',n,p.id,'',reason);save();render();$('cashAmount').value='';$('cashReason').value='';showNotice('Payment approved. '+money(n)+' deducted from '+p.name+'.','good','cashMsg');};
+$('saveSettings').onclick=()=>{state.settings.bankName=$('bankName').value.trim()||'PocketBank';state.settings.currencyLabel=$('currencyLabel').value.trim()||'toy dollars';save();render();showNotice('Settings saved.','good');};
+function download(name,data,type){const blob=new Blob([data],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+$('exportBtn').onclick=()=>download('pocketbank-backup-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(state,null,2),'application/json');
+$('importBtn').onclick=()=>$('importFile').click();
+$('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!Array.isArray(x.players)||!Array.isArray(x.transactions)||!x.settings)throw Error('This does not look like a PocketBank backup.');if(!confirm('Replace current bank data with this backup? Export your current data first if you need it.'))return;state=x;state.settings={bankName:'PocketBank',currencyLabel:'toy dollars',...x.settings};save();render();showNotice('Backup restored.','good');}catch(err){alert('Import failed: '+err.message);}finally{e.target.value='';}};
+$('exportCsvBtn').onclick=()=>{const rows=[['Date','Type','Amount','From','To','Reason'],...state.transactions.map(t=>[t.date,t.type,t.amount,player(t.from)?.name||'',player(t.to)?.name||'',t.reason])];const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');download('pocketbank-transactions.csv',csv,'text/csv');};
+$('resetBtn').onclick=()=>{if(confirm('Delete all players, balances, cards and transactions from this browser?')){if(confirm('Final check: have you exported a backup? This cannot be undone.')){state={players:[],transactions:[],settings:{bankName:'PocketBank',currencyLabel:'toy dollars'}};save();render();showNotice('Bank reset.','good');}}};
+load();render();
+})();
+</script>
+</body>
+</html>
